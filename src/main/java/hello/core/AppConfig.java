@@ -16,6 +16,12 @@ import org.springframework.context.annotation.Configuration;
 // @Configuration 설정을 구성한다는 뜻
 // 각 메서드에 @Bean을 붙여 스프링 컨테이너에 스프링 빈으로 등록한다
 
+// 스프링 컨테이너 : ApplicationContext , 자바 객체의 생명 주기를 관리하며 생성된 자바 객체들에게 추가적인 기능을 제공
+// Bean : 컨테이너 안에 들어있는 객체
+// DI : 의존성 주입, 컨테이너가 의존관계를 자동으로 연결
+// Ioc : 제어권이 사용자에게 있지 않고 프레임워크에 있음
+
+
 @Configuration
 public class AppConfig { //애플리케이션의 전체 동작 방식을 구성하기 위해, 역할과 구현 클래스가 한눈에 들어온다.
     @Bean

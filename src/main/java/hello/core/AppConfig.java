@@ -31,8 +31,8 @@ public class AppConfig { //애플리케이션의 전체 동작 방식을 구성�
 
     @Bean
     public OrderService orderService(){
-//        return new OrderServiceImpl(memberRepository(), discountPolicy());
-        return null;
+        return new OrderServiceImpl(memberRepository(), discountPolicy());
+//        return null;
     }
 
     @Bean

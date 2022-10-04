@@ -1,37 +1,23 @@
 package hello.core.order;
 
 import hello.core.discount.DiscountPolicy;
+import hello.core.discount.FixDiscountPolicy;
 import hello.core.member.Member;
 import hello.core.member.MemberRepository;
 import hello.core.member.MemoryMemberRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
+@RequiredArgsConstructor // final이 붙은 필드를 모아서 생성자를 자동으로 만들어준다. class 파일에는 자동으로 추가되어있다.
 public class OrderServiceImpl implements OrderService{
 
-    private MemberRepository memberRepository;
-    private DiscountPolicy discountPolicy;
+    // 필드를 이용한 의존성 주입은 권장하지 않음 . Why? 외부에서 변경이 불가능하기 때문에
+    private final MemberRepository memberRepository;
+    private final DiscountPolicy discountPolicy;
 //    private final DiscountPolicy discountPolicy = new FixDiscountPolicy();
 //    private final DiscountPolicy discountPolicy = new RateDiscountPolicy(); // 주석의 코드로 작성하면, FixDiscountPolicy에도 의존하게 되므로 DIP를 위반한다.
-
-    //수정자
-    @Autowired
-    public void setMemberRepository(MemberRepository memberRepository){
-        this.memberRepository = memberRepository;
-    }
-    @Autowired
-    public void setDiscountPolicy(DiscountPolicy discountPolicy){
-        this.discountPolicy = discountPolicy;
-    }
-    // 생성자 주입 : 불변, 필수 의존관계에 사용
-
-    //@Autowired  생성자가 딱 1개만 있으면 @Autowired를 생략해도 자동 주입 된다.
-    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy){
-        this.memberRepository = memberRepository;
-        this.discountPolicy = discountPolicy;
-    }
-
 
     @Override
     public Order createOrder(Long memberId, String itemName, int itemPrice) {

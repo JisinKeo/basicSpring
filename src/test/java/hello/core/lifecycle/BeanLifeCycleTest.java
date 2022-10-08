@@ -14,8 +14,8 @@ public class BeanLifeCycleTest {
         ConfigurableApplicationContext ac = new AnnotationConfigApplicationContext(LifeCycleConfig.class);
         NetworkClient client = ac.getBean(NetworkClient.class);
         ac.close();
+        //..
     }
-
     @Configuration
     static class LifeCycleConfig{
         @Bean // 스프링 빈은 객체를 생성하고, 의존관계 주입이 다 끝난 다음에야 필요한 데이터를 사용할 수 있는 준비가 완료된다.

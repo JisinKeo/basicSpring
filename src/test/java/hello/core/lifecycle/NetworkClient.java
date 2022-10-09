@@ -1,5 +1,6 @@
 package hello.core.lifecycle;
 
+
 public class NetworkClient {
 
     private String url;
@@ -26,5 +27,16 @@ public class NetworkClient {
     //서비스 종료 시 호출
     public void disconnect(){
         System.out.println("close : " + url);
+    }
+
+    public void init(){
+        System.out.println("NetworkClient.init");
+        connect();
+        call("초기화 연결 메시지");
+    }
+
+    public void close() {
+        System.out.println("NetworkClient.destroy");
+        disconnect();
     }
 }

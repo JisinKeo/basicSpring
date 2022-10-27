@@ -42,18 +42,14 @@ public class SingletonWithPrototypeTest1 {
     static class ClientBean{
         @Autowired
         private Provider<PrototypeBean> prototypeBeanProvider;
-
-        //ObjectFactory, ObjectProvider
         public int logic(){
             PrototypeBean prototypeBean = prototypeBeanProvider.get();
-            //항상 새로운 프로토타입 빈이 생성되는 것을 확인할 수 있다.
-            //내부에서는 스프링 컨테이너를 통해 해당 빈을 찾아서 반환한다.
             prototypeBean.addCount();
             int count = prototypeBean.getCount();
             return count;
         }
     }
-
+    // provider.get()을 통해서 항상 새로운 프로토타입 빈이 생성되는 것을 확인할 수 있다.
     @Scope("prototype")
     static class PrototypeBean{
         private int count = 0;
